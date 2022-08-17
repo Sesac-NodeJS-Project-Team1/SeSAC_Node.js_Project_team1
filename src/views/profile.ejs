@@ -4,6 +4,9 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+        <link rel="stylesheet" href="/css/box.css">
+        <link rel="stylesheet" href="/css/nav.css">
+
         <script>
             function delete_user() {
                 axios({
@@ -16,12 +19,55 @@
                     return response.data;
                 }).then((data) => {
                     alert(data);
+                    location.href = "/";
                 })
             }
         </script>
     </head>
     <body>
-        <%=user%>
-        <button onclick="delete_user();">회원탈퇴</button>
+        <%-include('nav.ejs') %>
+        <script src="/js/nav.js"></script>
+
+        <div id="container">
+        
+            <!-- header 부분 -->
+            <header>
+    
+            </header>
+    
+            <!-- profile 부분 -->
+            <div id="profile">
+                <div id="myPageText">
+                    <h1>마이페이지</h1>
+                </div>
+                <div id="information">
+                    <div id="boxInfo">
+                            <div id="photo">
+                                <img src="/img/people.png" width="100px" height="80px">
+                            </div>
+                            <div id="modify">
+                                <p>정보수정</p>
+                            </div>
+                            <div id="delete">
+                                <p>회원탈퇴</p>
+                            </div>
+                    </div>
+                    <table class="memberInfo" border="0">
+                        <tr class="name">
+                            <td><%=name%></td>
+                        </tr>
+                        <tr class="phoneNumber">
+                            <td class="phone">전화번호</td>
+                            <td><%=tel%></td>
+                            
+                        </tr>
+                        <tr class="email">
+                            <td class="mail">이메일</td>
+                            <td><%=email%></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

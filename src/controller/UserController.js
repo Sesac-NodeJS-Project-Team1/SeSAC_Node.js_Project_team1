@@ -59,7 +59,11 @@ exports.profile = (req, res) => {
     const user = req.session.user;
 
     if ( user != undefined ) {
-        res.render("profile", {isLogin: true, user: user});
+        models.User.findOne({where: {id: user}})
+        .then((result) => {
+            const {name, tel, email} = result;
+            res.render("profile", {isLogin: true, user: user, id: id, name: name, tel: tel, email: email});
+        })
     } else {
         res.redirect("/user");
     }
